@@ -1,0 +1,99 @@
+<template>
+  <!-- <div class="apartments-item" @click="log(id, $event)"> -->
+  <!-- <div class="apartments-item" @click="$emit('click')"> -->
+  <div class="apartments-item">
+    <div class="apartments-item__inner">
+      <img :src="imgSrc" alt="" class="apartments-item__photo" />
+      <div class="apartments-item__content">
+        <p class="apartments-item__description">{{ description }}</p>
+        <div class="apartments-item__raiting">
+          <StarRaiting :raiting="raiting" />
+        </div>
+        <div class="apartments-item__price">UAH {{ price }}</div>
+        <a href="https:/facebook.com" @click.prevent.stop="handleLinkClicked">Facebook</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import StarRaiting from '../StarRaiting/StarRaiting.vue';
+
+export default {
+  name: 'ApartmentsItem',
+  components: { StarRaiting },
+  props: {
+    id: {
+      tipe: String,
+      require: true,
+    },
+    description: {
+      type: String,
+      default: '',
+    },
+    raiting: { type: Number, default: 0 },
+    price: { type: Number, drequired: true },
+    imgSrc: {
+      type: String,
+      default: '',
+    },
+  },
+  methods: {
+    log(id, event) {
+      console.log('click', id, event);
+    },
+    handleLinkClicked() {
+      console.log('handleLinkClicked');
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.apartments-item {
+  position: relative;
+  width: 350px;
+  /* max-width: 350px; */
+  padding: 0 15px;
+  margin-bottom: 30px;
+  &__inner {
+    position: relative;
+  }
+  &__content {
+    position: relative;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.4s;
+    background: rgba(#0f1d2d, 0.7);
+    min-height: 200px;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+    line-height: 1.4;
+    z-index: 1;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  &__description {
+    margin-bottom: 20px;
+    max-height: calc(1em * 1.4 * 3);
+    overflow: hidden;
+  }
+  &__raiting {
+    margin-bottom: 20px;
+  }
+  &__price {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  &__photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+</style>

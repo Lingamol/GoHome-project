@@ -1,7 +1,7 @@
 <template>
-  <div class="content">
-    <ContainerApp><slot>CONTENT</slot></ContainerApp>
-  </div>
+  <ContainerApp class="content">
+    <slot>CONTENT</slot>
+  </ContainerApp>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default { name: 'ContentApp', components: { ContainerApp } };
 
 <style lang="scss" scoped>
 .content {
+  width: 100%;
   padding-top: 60px;
   flex-grow: 1;
 }

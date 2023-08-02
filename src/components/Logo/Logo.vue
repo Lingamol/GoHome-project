@@ -1,10 +1,9 @@
 <template>
   <div class="logo">
     <a href="" class="logo__link">
-      <img src="/images/svg/logo.svg" alt="logo" class="logo__img" />
+      <img src="images/svg/logo.svg" alt="logo" class="logo__img" />
       <div class="logo__text">
-        <span class="logo__text_first">Go</span
-        ><span class="logo__text_second">Home</span>
+        <span class="logo__text_first">Go</span><span class="logo__text_second">Home</span>
       </div>
     </a>
   </div>
@@ -13,12 +12,12 @@
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Logo",
+  name: 'Logo',
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/scss/variables.scss";
+@import '../../assets/scss/variables.scss';
 .logo {
   &__link {
     display: flex;

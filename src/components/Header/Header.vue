@@ -20,9 +20,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/variables.scss';
 .header {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: 0;
+  left: 0; */
   width: 100%;
   background: $header-bg;
   padding: 16px 0;
