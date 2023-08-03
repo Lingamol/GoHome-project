@@ -1,7 +1,7 @@
 <template>
   <div class="logo">
     <a href="" class="logo__link">
-      <img src="images/svg/logo.svg" alt="logo" class="logo__img" />
+      <img src="../../assets/images/svg/Logo.svg" alt="logo" class="logo__img" />
       <div class="logo__text">
         <span class="logo__text_first">Go</span><span class="logo__text_second">Home</span>
       </div>

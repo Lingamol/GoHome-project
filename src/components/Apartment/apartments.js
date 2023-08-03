@@ -5,7 +5,7 @@ export const apartments = [
     description: 'Apartment1 description',
     price: 345,
     raiting: 4,
-    imgSrc: '/images/apartments/Aparment1.jpg',
+    imgSrc: '../../assets/images/apartments/Aparment1.jpg',
     location: { city: 'Kharkiv' },
     owner: {
       name: 'Helen',
