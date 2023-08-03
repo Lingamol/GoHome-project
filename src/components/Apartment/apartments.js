@@ -5,7 +5,8 @@ export const apartments = [
     description: 'Apartment1 description',
     price: 345,
     raiting: 4,
-    imgSrc: '/images/apartments/Aparment1.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072492/apartments/Aparment1_jkuuwu.jpg',
     location: { city: 'Kharkiv' },
     owner: {
       name: 'Helen',
@@ -19,7 +20,8 @@ export const apartments = [
     description: 'Apartment2 description',
     price: 546,
     raiting: 3,
-    imgSrc: '/images/apartments/Aparment2.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072492/apartments/Aparment2_gfkqnl.jpg',
     location: { city: 'Odessa' },
     owner: {
       name: 'Mark',
@@ -33,7 +35,8 @@ export const apartments = [
     description: 'Apartment3 description nflmdsf ,sdsdf gnsld kdfnmlgd sfmmksdfj',
     price: 756,
     raiting: 3.5,
-    imgSrc: '/images/apartments/Aparment3.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072494/apartments/Aparment3_lwn4qx.jpg',
     location: { city: 'Odessa' },
     owner: {
       name: 'John',
@@ -47,7 +50,8 @@ export const apartments = [
     description: 'Apartment4 description',
     price: 965,
     raiting: 4.5,
-    imgSrc: '/images/apartments/Aparment4.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072493/apartments/Aparment4_k23v9t.jpg',
     location: { city: 'Kyiv' },
     owner: {
       name: 'Jaroslav',
@@ -61,7 +65,8 @@ export const apartments = [
     description: 'Apartment5 description',
     price: 1145,
     raiting: 5,
-    imgSrc: '/images/apartments/Aparment5.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072493/apartments/Aparment5_ljp1xo.jpg',
     location: { city: 'Kharkiv' },
     owner: {
       name: 'Helen',
@@ -75,7 +80,8 @@ export const apartments = [
     description: 'Apartment6 description',
     price: 546,
     raiting: 3,
-    imgSrc: '/images/apartments/Aparment6.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072492/apartments/Aparment6_jk5pme.jpg',
     location: { city: 'Odesa' },
     owner: {
       name: 'Mark',
@@ -89,7 +95,8 @@ export const apartments = [
     description: 'Apartment7 description',
     price: 556,
     raiting: 3.5,
-    imgSrc: '/images/apartments/Aparment7.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072493/apartments/Aparment7_fqpftq.jpg',
     location: { city: 'Odesa' },
     owner: {
       name: 'John',
@@ -103,7 +110,8 @@ export const apartments = [
     description: 'Apartment8 description',
     price: 565,
     raiting: 4.5,
-    imgSrc: '/images/apartments/Aparment8.jpg',
+    imgSrc:
+      'https://res.cloudinary.com/dcw1yxr6s/image/upload/v1691072492/apartments/Aparment8_ji3bnp.jpg',
     location: { city: 'Kyiv' },
     owner: {
       name: 'Jaroslav',

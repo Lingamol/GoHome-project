@@ -20,8 +20,8 @@ export default {
 @import '../../assets/scss/variables.scss';
 .custom-input {
   min-height: 40px;
-  /* outline: none;
-  border: none; */
+  outline: none;
+  /* border: none; */
   border: 2px solid $main-color;
   font-size: 18px;
   line-height: inherit;
@@ -29,6 +29,11 @@ export default {
   min-width: 220px;
   &::placeholder {
     color: inherit;
+  }
+  &:active,
+  &:hover,
+  &:focus {
+    border: 2px solid $main-color;
   }
 }
 </style>
