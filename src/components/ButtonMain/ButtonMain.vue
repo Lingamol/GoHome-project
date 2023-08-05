@@ -29,14 +29,14 @@ export default {
   min-width: 220px;
   border: 1px solid transparent;
   padding: 8px 15px;
-  opacity: 0.8;
+  opacity: 1;
   &--outlined {
     background: $btn-sec-color;
     color: $btn-main-color;
     border: 2px solid $btn-main-color;
   }
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 }
 </style>
