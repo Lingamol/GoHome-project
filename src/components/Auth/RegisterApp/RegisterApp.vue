@@ -51,11 +51,12 @@ import FormApp from '../../Shared/Form/FormApp';
 import CustomInput from '../../Shared/CustomInput';
 import SubmitButton from '../../ButtonMain/ButtonMain';
 import AuthContainer from '../AuthContainer.vue';
-import { registerUser } from '../../../services/auth.services';
+// import { registerUser } from '../../../services/auth.services';
+import { mapActions } from 'vuex';
 
 import { emailValidation, passwordValidation, isRequired } from '../../../utils/validationRules';
 export default {
-  name: 'LoginApp',
+  name: 'RegisterApp',
   components: { FormApp, CustomInput, SubmitButton, AuthContainer },
   data() {
     return { formData: { name: '', email: '', password: '', confirmPassword: '' }, loading: false };
@@ -87,6 +88,7 @@ export default {
   //     console.log('ref form', this.$refs.form);
   //   },
   methods: {
+    ...mapActions('auth', ['registerUser']),
     async handleSubmit() {
       // console.log('ref', this.$refs.form);
       const { form } = this.$refs;
@@ -97,9 +99,18 @@ export default {
         try {
           this.loading = true;
           console.log('formData', this.formData);
-          const { data } = await registerUser({ name, email, password });
+          // const { data } = await registerUser({ name, email, password });
+          // this.$store.commit('setUserData', data.user);
+          // this.$store.commit('setToken', data.token);
+          // console.log('result data', data);
+          // console.log('store', this.$store.state);
 
-          console.log('register data', data);
+          /////////////////////////////////////////////////////////////////////////
+          // await this.$store.dispatch('auth/registerUser', { name, email, password });
+          await this.registerUser({ name, email, password });
+          ////////////////////////////////////////////////////////////////////////////
+
+          this.$router.push({ name: 'home-page' });
           form.reset();
         } catch (error) {
           this.$notify({
@@ -111,8 +122,6 @@ export default {
         } finally {
           this.loading = false;
         }
-
-        console.log('formData', this.formData);
       }
     },
   },

@@ -8,8 +8,9 @@ export default { name: 'ContainerApp' };
 
 <style lang="scss" scoped>
 .container {
-  width: 1110px;
+  max-width: 1110px;
   margin: 0 auto;
   outline: 2px solid red;
+  height: 100%;
 }
 </style>

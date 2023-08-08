@@ -6,6 +6,7 @@
       <AppHeader />
       <router-view></router-view>
     </div>
+    {{ $store.state.user }}
     <AppFooter />
   </div>
 </template>
@@ -14,10 +15,18 @@
 import AppHeader from './components/Header/Header';
 import AppFooter from './components/Footer/Footer';
 import NotificationsApp from './components/Notifications/NotificationsApp';
+import { mapGetters } from 'vuex';
 export default {
   name: 'App',
   components: { AppFooter, AppHeader, NotificationsApp },
+  computed: { ...mapGetters('auth', ['isLoggedIn']) },
   mounted() {
+    console.log('isLoggedIn:', this.isLoggedIn);
+    // console.log('isLoggedIn:', this.$store.getters['auth/isLoggedIn']);
+    // console.log('store', this.$store.state.userName);
+    // setTimeout(() => {
+    //   this.$store.commit('changeName', 'Oleh');
+    // }, 1000);
     // this.$notify({
     //   title: 'Important message',
     //   text: 'Hello user! This is a notification!',

@@ -32,7 +32,8 @@ import CustomInput from '../../Shared/CustomInput';
 import SubmitButton from '../../ButtonMain/ButtonMain';
 import AuthContainer from '../AuthContainer.vue';
 import { emailValidation, passwordValidation, isRequired } from '../../../utils/validationRules';
-import { loginUser } from '../../../services/auth.services';
+import { mapActions } from 'vuex';
+// import { loginUser } from '../../../services/auth.services';
 export default {
   name: 'LoginApp',
   components: { FormApp, CustomInput, SubmitButton, AuthContainer },
@@ -54,17 +55,29 @@ export default {
   //     console.log('ref form', this.$refs.form);
   //   },
   methods: {
+    ...mapActions('auth', ['login']),
     async handleSubmit() {
+      const { form } = this.$refs;
       // console.log('ref', this.$refs.form);
-      const isFormValid = this.$refs.form.validate();
+      const isFormValid = form.validate();
       // console.log('submitForm', isFormValid);
       if (isFormValid) {
         try {
           this.loading = true;
           console.log('formData', this.formData);
-          const { data } = await loginUser(this.formData);
+          // const { data } = await loginUser(this.formData);
+          // this.$store.commit('setUserData', data.user);
+          // this.$store.commit('setToken', data.token);
+          // console.log('result data', data);
+          // console.log('store', this.$store.state);
 
-          console.log('result data', data);
+          //////////////////////////////////////////////////////////////
+
+          // await this.$store.dispatch('auth/login', this.formData);
+          await this.login(this.formData);
+          /////////////////////////////////////////////////////////
+          this.$router.push({ name: 'home-page' });
+          form.reset();
         } catch (error) {
           this.$notify({
             type: 'error',
@@ -74,6 +87,7 @@ export default {
           console.error(error);
         } finally {
           this.loading = false;
+          console.log('store', this.$store.state.user);
         }
       }
     },
