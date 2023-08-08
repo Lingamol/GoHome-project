@@ -1,13 +1,59 @@
 <template>
-  <div :id="$style.app">
-    <AppHeader />
-    <router-view></router-view>
+  <div id="app">
+    <!-- <notifications /> -->
+    <NotificationsApp />
+    <div class="content">
+      <AppHeader />
+      <router-view></router-view>
+    </div>
     <AppFooter />
   </div>
 </template>
 
 <script>
 import AppHeader from './components/Header/Header';
+import AppFooter from './components/Footer/Footer';
+import NotificationsApp from './components/Notifications/NotificationsApp';
+export default {
+  name: 'App',
+  components: { AppFooter, AppHeader, NotificationsApp },
+  mounted() {
+    // this.$notify({
+    //   title: 'Important message',
+    //   text: 'Hello user! This is a notification!',
+    // });
+  },
+};
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.content {
+  flex-grow: 1;
+  width: 100%;
+}
+</style>
+
+<!-- <template>
+  <div :id="$style.app">
+    <div class="content">
+      <router-view></router-view>
+    </div>
+    <AppFooter />
+  </div>
+</template>
+
+<script>
+// import AppHeader from './components/Header/Header';
 import AppFooter from './components/Footer/Footer';
 // import ContentApp from './components/Shared/ContentApp';
 // import ApartmentFilterForm from './components/Apartment/ApartmentFilterForm';
@@ -18,7 +64,7 @@ import AppFooter from './components/Footer/Footer';
 export default {
   name: 'App',
   components: {
-    AppHeader,
+    // AppHeader,
     AppFooter,
     // ContentApp,
     // ApartmentFilterForm,
@@ -84,5 +130,11 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: aqua;
+  /* padding-top: 60px; */
 }
-</style>
+.content {
+  background-color: blue;
+  flex-grow: 1;
+}
+</style> -->

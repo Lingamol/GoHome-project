@@ -1,33 +1,37 @@
 <template>
   <li class="review-item">
-    <div class="review-item__header">
-      <ReviewAvatar :avatarUrl="review.avatarUrl" class="review-item__user-avatar" />
-      <div class="review_item__title">
-        <p class="review-item__author">{{ review.name }}</p>
-        <StarRaiting :raiting="review.raiting" />
-      </div>
-    </div>
-    <p class="review-item__text">{{ textElipses(review.text, 140) }}</p>
+    <ReviewHeader :author="review.name" :rating="review.rating" :avatarUrl="review.avatarUrl" />
+    <p class="review-item__text">{{ textElipses }}</p>
   </li>
 </template>
 
 <script>
-import StarRaiting from '../../StarRaiting/StarRaiting';
-import ReviewAvatar from '../ReviewAvatar/ReviewAvatar.vue';
-
+import ReviewHeader from './ReviewHeader.vue';
+import { MAX_LENGTH_REVIEW_TO_SHOW } from '../../../variables.js';
 export default {
   name: 'ReviewsItem',
   props: {
-    // id: { type: String, requaire: true },
-    review: { type: Object, requaire: true },
+    review: { type: Object, requaired: true },
   },
-  components: { StarRaiting, ReviewAvatar },
-  methods: {
-    textElipses(text, maxLength) {
-      if (text.length < maxLength) {
-        return text;
+  components: { ReviewHeader },
+  data() {
+    return { maxLength: MAX_LENGTH_REVIEW_TO_SHOW };
+  },
+
+  // methods: {
+  //   textElipses(text, maxLength) {
+  //     if (text.length < maxLength) {
+  //       return text;
+  //     }
+  //     return text.slice(0, maxLength) + '...';
+  //   },
+  // },
+  computed: {
+    textElipses() {
+      if (this.review.text.length < this.maxLength) {
+        return this.review.text;
       }
-      return text.slice(0, maxLength) + '...';
+      return this.review.text.slice(0, this.maxLength) + '...';
     },
   },
 };
@@ -45,22 +49,6 @@ export default {
   border-left: 2px solid $secondary-bg-color;
   border-right: 2px solid $secondary-bg-color;
 
-  &__header {
-    display: flex;
-    margin-bottom: 20px;
-    align-items: center;
-  }
-  &__title {
-    display: flex;
-    flex-direction: column;
-  }
-  &__user-avatar {
-    margin-right: 17px;
-  }
-  &__author {
-    font-size: 18px;
-    font-weight: 700;
-  }
   &__text {
     height: 100px;
     overflow: hidden;

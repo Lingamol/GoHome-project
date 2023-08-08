@@ -7,9 +7,9 @@
     <div class="apartments-item__inner">
       <img :src="imgSrc" alt="apartment photo" class="apartments-item__photo" />
       <div class="apartments-item__content">
-        <p class="apartments-item__description">{{ description }}</p>
-        <div class="apartments-item__raiting">
-          <StarRaiting :raiting="raiting" />
+        <p class="apartments-item__description">{{ descr }}</p>
+        <div class="apartments-item__rating">
+          <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
         <router-link
@@ -23,21 +23,21 @@
 </template>
 
 <script>
-import StarRaiting from '../StarRaiting/StarRaiting.vue';
+import StarRating from '../StarRating/StarRating.vue';
 
 export default {
   name: 'ApartmentsItem',
-  components: { StarRaiting },
+  components: { StarRating },
   props: {
     id: {
       tipe: String,
       require: true,
     },
-    description: {
+    descr: {
       type: String,
       default: '',
     },
-    raiting: { type: Number, default: 0 },
+    rating: { type: Number, default: 0 },
     price: { type: Number, drequired: true },
     imgSrc: {
       type: String,
@@ -86,7 +86,7 @@ export default {
     max-height: calc(1em * 1.4 * 3);
     overflow: hidden;
   }
-  &__raiting {
+  &__rating {
     margin-bottom: 20px;
   }
   &__price {

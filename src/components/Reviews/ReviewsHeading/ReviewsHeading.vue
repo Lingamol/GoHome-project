@@ -1,23 +1,28 @@
 <template>
   <div class="reviews-heading">
     <h3 class="reviews-heading__title">Суммарный рейтинг</h3>
-    <div class="reviews-heading__raiting">
-      <p class="reviews-heading__count">{{ countReviews }} отзывов</p>
-      <StarRaiting :raiting="averageRaiting" />
+    <div class="reviews-heading__rating">
+      <p class="reviews-heading__count">{{ countReviews }} {{ pluralText(countReviews) }}</p>
+      <StarRating :rating="averageRating" />
     </div>
   </div>
 </template>
 
 <script>
-import StarRaiting from '../../StarRaiting/StarRaiting';
+import StarRating from '../../StarRating/StarRating';
 
 export default {
   name: 'ReviewsHeading',
   props: {
-    countReviews: { type: Number, requaire: true },
-    averageRaiting: { type: Number, requaire: true },
+    countReviews: { type: Number, requaired: true },
+    averageRating: { type: Number, requaired: true },
   },
-  components: { StarRaiting },
+  components: { StarRating },
+  methods: {
+    pluralText(quantity) {
+      return quantity === 1 ? 'отзыв' : quantity <= 4 ? 'отзыва' : 'отзывов';
+    },
+  },
 };
 </script>
 
@@ -29,7 +34,7 @@ export default {
     text-transform: uppercase;
     margin-bottom: 7px;
   }
-  &__raiting {
+  &__rating {
     display: flex;
     align-items: center;
     justify-content: space-between;

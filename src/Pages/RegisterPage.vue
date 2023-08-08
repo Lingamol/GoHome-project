@@ -1,21 +1,32 @@
 <template>
-  <ContentApp class="register-page"> </ContentApp>
+  <div class="register-page">
+    <SectionSpacer>
+      <AuthSection>
+        <RegisterForm class="register-form" />
+      </AuthSection>
+    </SectionSpacer>
+  </div>
 </template>
 
 <script>
-import ContentApp from '../components/Shared/ContentApp';
+import SectionSpacer from '../components/Shared/SectionWithHeaderSpacer.vue';
+import AuthSection from '../components/Auth/AuthSection';
+import RegisterForm from '../components/Auth/RegisterApp/RegisterApp';
 
 export default {
   name: 'RegisterPage',
-  components: { ContentApp },
+  components: { AuthSection, RegisterForm, SectionSpacer },
 };
 </script>
 
 <style lang="scss" scoped>
 .register-page {
-  /* background: url('../assets/images//bg/AuthBg.jpg'); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  position: relative;
+}
+.register-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

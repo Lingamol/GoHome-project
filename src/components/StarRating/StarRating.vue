@@ -1,8 +1,8 @@
 <template>
-  <div class="star-raiting">
+  <div class="star-rating">
     <span class="star star--outlined" v-for="index in starLimit" :key="index"></span>
-    <!-- <div class="star-raiting__colored" :style="`width:${raitingWidth};`"> -->
-    <div class="star-raiting__colored" :style="raitingWhithStyle">
+    <!-- <div class="star-rating__colored" :style="`width:${ratingWidth};`"> -->
+    <div class="star-rating__colored" :style="ratingWhithStyle">
       <span class="star star--colored" v-for="index in starLimit" :key="index"></span>
     </div>
   </div>
@@ -10,28 +10,28 @@
 
 <script>
 export default {
-  name: 'StarRaiting',
+  name: 'StarRating',
   props: {
-    raiting: {
+    rating: {
       type: Number,
       default: 0,
     },
     starLimit: { type: Number, default: 5 },
   },
   computed: {
-    raitingWidth() {
-      //   return (this.raiting / this.starLimit) * 100 + "%";
-      return (this.raiting / this.starLimit) * 100;
+    ratingWidth() {
+      //   return (this.rating / this.starLimit) * 100 + "%";
+      return (this.rating / this.starLimit) * 100;
     },
-    raitingWhithStyle() {
-      return `width: ${this.raitingWidth}%;`;
+    ratingWhithStyle() {
+      return `width: ${this.ratingWidth}%;`;
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.star-raiting {
+.star-rating {
   position: relative;
   display: inline-flex;
   &__colored {

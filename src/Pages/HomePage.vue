@@ -1,42 +1,56 @@
 <template>
-  <!-- <main class="homepage"> -->
-  <ContentApp>
-    <ApartmentFilterForm @submit="logger" :optionItems="cities" :resetFilter="resetFilter" />
-    <ApartmentsList
-      :items="apartmentsToShow(apartments, filter)"
-      :title="'Подборка согласно выбора'"
-    >
-      <template v-slot:apartment="{ apartment }">
-        <ApartmentsItem
-          :id="apartment.id"
-          :key="apartment.id"
-          :raiting="apartment.raiting"
-          :description="apartment.description"
-          :price="apartment.price"
-          :imgSrc="apartment.imgSrc"
-        /> </template
-    ></ApartmentsList>
-  </ContentApp>
-  <!-- </main> -->
+  <SectionSpacer>
+    <ContainerApp>
+      <main class="homepage">
+        <ApartmentFilterForm
+          @submit="logger"
+          :optionItems="cities"
+          :resetFilter="resetFilter"
+          class="homepage__filter"
+        />
+
+        <ApartmentsList
+          :items="apartmentsToShow(apartments, filter)"
+          :title="'Подборка согласно выбора'"
+        >
+          <template v-slot:apartment="{ apartment }">
+            <ApartmentsItem
+              :id="apartment.id"
+              :key="apartment.id"
+              :rating="apartment.rating"
+              :descr="apartment.descr"
+              :price="apartment.price"
+              :imgSrc="apartment.imgUrl"
+            /> </template
+        ></ApartmentsList>
+      </main>
+    </ContainerApp>
+    <!-- </ContentApp> -->
+  </SectionSpacer>
 </template>
 <script>
-import ContentApp from '../components/Shared/ContentApp';
+// import ContentApp from '../components/Shared/ContentApp';
+import SectionSpacer from '../components/Shared/SectionWithHeaderSpacer.vue';
+import ContainerApp from '../components/Shared/ContainerApp.vue';
 import ApartmentFilterForm from '../components/Apartment/ApartmentFilterForm';
 import ApartmentsList from '../components/Apartment/ApartmentsList';
 import ApartmentsItem from '../components/Apartment/ApartmentsItem';
-import { apartments } from '../components/Apartment/apartments';
+// import { apartments } from '../components/Apartment/apartments';
+import { getApartmentsList } from '../services/apartments.services';
 
 export default {
   name: 'HomePage',
   components: {
-    ContentApp,
+    SectionSpacer,
+    ContainerApp,
     ApartmentFilterForm,
     ApartmentsList,
     ApartmentsItem,
   },
   data() {
     return {
-      apartments,
+      apartments: [],
+      optionsCities: [],
       select: '',
       text: '',
       filter: { city: '', price: '' },
@@ -44,14 +58,7 @@ export default {
   },
   computed: {
     cities() {
-      return [
-        { value: '', label: 'Город', selected: true },
-        'Odessa',
-        'Kyiv',
-        'Vinnitsya',
-        'Kharkiv',
-        'Lviv',
-      ];
+      return [{ value: '', label: 'Город', selected: true }, ...this.optionsCities];
     },
   },
   methods: {
@@ -69,8 +76,7 @@ export default {
       if (!price && !city) {
         return items;
       }
-      console.log('city', city);
-      console.log('type', typeof price, price);
+
       return city && price
         ? items
             .filter(item => item.location.city === filter.city)
@@ -83,6 +89,22 @@ export default {
       this.filter = { city: '', price: '' };
     },
   },
+  async created() {
+    try {
+      const { data } = await getApartmentsList();
+      this.apartments = data;
+      this.optionsCities = data
+        .map(item => item.location.city)
+        .filter((city, index, array) => array.indexOf(city) === index);
+      console.log('get apartments data ', data);
+      console.log('get cities ', this.optionsCities);
+    } catch (error) {
+      console.error(error);
+    }
+  },
 };
 </script>
-<style module></style>
+<style module>
+.homepage {
+}
+</style>

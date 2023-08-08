@@ -4,12 +4,14 @@ import ApartmentPage from './Pages/ApartmentPage.vue';
 import ErrorPage from './Pages/ErrorPage.vue';
 import LoginPage from './Pages/LoginPage.vue';
 import RegisterPage from './Pages/RegisterPage.vue';
+import TestPage from './Pages/TestPage.vue';
 
 const routes = [
-  { path: '/', component: HomePage, name: 'homepage' },
-  { path: '/login', component: LoginPage, name: 'loginpage' },
-  { path: '/register', component: RegisterPage, name: 'registerpage' },
+  { path: '/', component: HomePage, name: 'home-page' },
+  { path: '/login', component: LoginPage, name: 'login-page' },
+  { path: '/register', component: RegisterPage, name: 'register-page' },
   { path: '/apartments/:id', component: ApartmentPage, name: 'apartment' },
+  { path: '/test', component: TestPage, name: 'test-page' },
   { path: '*', component: ErrorPage, name: 'error-page' },
 ];
 const router = new VueRouter({ routes, mode: 'history' });

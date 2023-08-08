@@ -3,8 +3,8 @@
     <h3 class="owner-info__header">Информация о владельце:</h3>
     <div class="owner-info__tab">
       <p class="owner-info__name">Имя {{ owner.name }}</p>
-      <p class="owner-info__phone">tel: {{ owner.phone }}</p>
-      <p class="owner-info__email">e-mail: {{ owner.email }}</p>
+      <a :href="`tel:${owner.phone}`" class="owner-info__phone">tel: {{ owner.phone }}</a>
+      <a :href="`mailto:${owner.email}`" class="owner-info__email">e-mail: {{ owner.email }}</a>
     </div>
   </section>
 </template>
@@ -27,13 +27,22 @@ export default {
     font-weight: 700;
   }
   &__tab {
+    display: flex;
+    flex-direction: column;
+
     margin-top: 20px;
     font-size: 16px;
     font-weight: 400;
   }
-  /* &__name {
+
+  &__phone,
+  &__email {
+    text-decoration: none;
+    color: currentColor;
   }
-&__email {
-} */
+  &__email {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 </style>

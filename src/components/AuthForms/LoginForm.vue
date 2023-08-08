@@ -2,7 +2,7 @@
   <div class="login-tumb">
     <h1 class="login-tumb__title">Логин</h1>
     <form @submit.prevent="handleSubmit" class="form-login">
-      <CustomInput v-model="login" placeholder="Login" class="form-login__input login" />
+      <CustomInput v-model="email" placeholder="Email" class="form-login__input login" />
       <CustomInput v-model="password" placeholder="Password" class="form-login__input password" />
       <SubmitButton type="submit" class="form-login__submit-button">Login</SubmitButton>
     </form>
@@ -16,12 +16,12 @@ export default {
   name: 'LoginForm',
   components: { CustomInput, SubmitButton },
   data() {
-    return { login: '', password: '' };
+    return { email: '', password: '' };
   },
 
   methods: {
     handleSubmit() {
-      this.$emit('submit', { login: this.login, password: this.password });
+      this.$emit('submit', { email: this.email, password: this.password });
     },
   },
 };

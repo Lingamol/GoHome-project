@@ -2,11 +2,11 @@
   <article class="apartment-main-info">
     <div class="apartment-main-info__header">
       <h1 class="apartment-main-info__title">{{ apartment.title }}</h1>
-      <StarRaiting :raiting="apartment.raiting" />
+      <StarRating :rating="apartment.rating" />
     </div>
-    <img :src="apartment.imgSrc" :alt="apartment.title" class="apartment-main-info__photo" />
+    <img :src="apartment.imgUrl" :alt="apartment.title" class="apartment-main-info__photo" />
     <p class="apartment-main-info__description">
-      {{ apartment.description }}
+      {{ apartment.descr }}
     </p>
     <ResereButton @click="handleReserve(apartment.id)" class="apartment-main-info__button"
       >Забронировать</ResereButton
@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import StarRaiting from '../StarRaiting/StarRaiting.vue';
+import StarRating from '../StarRating/StarRating.vue';
 import ResereButton from '../ButtonMain/ButtonMain.vue';
 export default {
   name: 'ApartmentsMainInfo',
-  components: { StarRaiting, ResereButton },
+  components: { StarRating, ResereButton },
   props: { apartment: { type: Object, requred: true } },
   methods: {
     handleReserve(id) {
@@ -51,7 +51,7 @@ export default {
   }
   &__photo {
     max-width: 100%;
-    height: 410px;
+    height: auto;
   }
   &__description {
     margin-top: 30px;

@@ -1,17 +1,17 @@
 <template>
-  <ContentApp>
+  <ContainerApp>
     <section class="error">
       <h1 class="error__title">Page not found 404</h1>
     </section>
-  </ContentApp>
+  </ContainerApp>
 </template>
 
 <script>
-import ContentApp from '../components/Shared/ContentApp';
+import ContainerApp from '../components/Shared/ContainerApp.vue';
 
 export default {
   name: 'ErrorPage',
-  components: { ContentApp },
+  components: { ContainerApp },
 };
 </script>
 

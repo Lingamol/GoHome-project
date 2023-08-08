@@ -1,19 +1,19 @@
 <template>
   <section class="reviews">
     <ReviewsHeading
-      :countReviews="reviews.length"
-      :averageRaiting="averageRaiting(reviews)"
+      :countReviews="amountReviews"
+      :averageRating="averageRating"
       class="reviews__header"
     />
     <ul>
       <ReviewsItem
-        v-for="review in reviews"
+        v-for="review in currentReviews"
         :key="review.id"
         :review="review"
         class="reviews__item"
       />
     </ul>
-    <ReadMoreBtn @click="handleReadMore" class="reviews__button">Читать еще...</ReadMoreBtn>
+    <ReadMoreBtn @click="toggleRewievs" class="reviews__button">{{ buttonText }}</ReadMoreBtn>
   </section>
 </template>
 
@@ -21,38 +21,44 @@
 import ReviewsItem from './ReviewItem/ReviewItem.vue';
 import ReviewsHeading from './ReviewsHeading/ReviewsHeading.vue';
 import ReadMoreBtn from '../ButtonMain/ButtonMain';
+import { REVIEWS_LIMIT } from '../../variables.js';
 
 export default {
   name: 'ReviewsApartments',
   components: { ReviewsItem, ReviewsHeading, ReadMoreBtn },
-  props: { reviews: { type: Array, require: true } },
-  data() {
-    return { items: 4 };
-  },
-  //   computed: {
-  //     totalRaiting() {
-  //       return (
-  //         reviews.reduce((total, review) => {
-  //           return total + review.raiting;
-  //         }, 0) / reviews.length
-  //       );
-  //     },
+  props: { reviews: { type: Array, requaired: true } },
 
-  methods: {
-    handleReadMore() {
-      alert('ReadMore Clicked');
-    },
-    averageRaiting(reviews) {
+  data() {
+    return { REVIEWS_LIMIT, reviwsLimit: REVIEWS_LIMIT };
+  },
+  computed: {
+    averageRating() {
       return (
-        reviews.reduce((total, review) => {
-          return total + review.raiting;
-        }, 0) / reviews.length
+        this.reviews.reduce((total, review) => {
+          return total + review.rating;
+        }, 0) / this.reviews.length
       );
     },
+    amountReviews() {
+      return this.reviews.length;
+    },
+    currentReviews() {
+      return this.reviews.slice(0, this.reviwsLimit);
+    },
+    buttonText() {
+      return this.reviwsLimit === this.reviews.length ? 'Свернуть' : 'Читать еще...';
+    },
   },
-  //   mounted() {
-  //     console.log('reviews', this.reviews);
-  //   },
+  methods: {
+    // handleReadMore() {
+    //   alert('ReadMore Clicked');
+    // },
+    toggleRewievs() {
+      this.reviwsLimit === this.reviews.length
+        ? (this.reviwsLimit = REVIEWS_LIMIT)
+        : (this.reviwsLimit = this.reviews.length);
+    },
+  },
 };
 </script>
 
@@ -69,6 +75,7 @@ export default {
     padding: 10px 20px 14px;
     background: $secondary-bg-color;
     color: $text-color-black;
+    font-family: inherit;
   }
 }
 </style>
