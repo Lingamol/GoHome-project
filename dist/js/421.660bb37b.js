@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkgo_home_project"]=self["webpackChunkgo_home_project"]||[]).push([[421],{1421:function(e,t,n){n.r(t),n.d(t,{default:function(){return l}});var r=function(){var e=this,t=e._self._c;return t("ContainerApp",[t("section",{staticClass:"error"},[t("h1",{staticClass:"error__title"},[e._v("Page not found 404")])])])},o=[],s=n(4826),a={name:"ErrorPage",components:{ContainerApp:s.Z}},c=a,u=n(1001),i=(0,u.Z)(c,r,o,!1,null,"b0a8c49e",null),l=i.exports}}]);
+//# sourceMappingURL=421.660bb37b.js.map
