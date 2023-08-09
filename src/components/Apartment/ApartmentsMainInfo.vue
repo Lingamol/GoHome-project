@@ -8,7 +8,10 @@
     <p class="apartment-main-info__description">
       {{ apartment.descr }}
     </p>
-    <ResereButton @click="handleReserve(apartment.id)" class="apartment-main-info__button"
+    <ResereButton
+      @click="handleApsrtmentsBooking()"
+      :loading="IsLoading"
+      class="apartment-main-info__button"
       >Забронировать</ResereButton
     >
   </article>
@@ -17,19 +20,43 @@
 <script>
 import StarRating from '../StarRating/StarRating.vue';
 import ResereButton from '../ButtonMain/ButtonMain.vue';
+import { bookApartment } from '../../services/orders.services';
 export default {
   name: 'ApartmentsMainInfo',
   components: { StarRating, ResereButton },
   props: { apartment: { type: Object, requred: true } },
+  data() {
+    return { IsLoading: false };
+  },
   methods: {
-    handleReserve(id) {
-      alert(`apartment ${id} rserved`);
+    async handleApsrtmentsBooking() {
+      const body = { apartmentId: this.$route.params.id, date: Date.now() };
+      try {
+        this.IsLoading = true;
+
+        const { data } = await bookApartment(body);
+        console.log('bookData', data);
+        this.$notify({
+          type: 'success',
+          title: 'Заказ добавлен',
+        });
+      } catch (error) {
+        this.$notify({
+          type: 'error',
+          title: 'Произошла ошибка',
+          text: error.message,
+        });
+        console.error(error.message);
+      } finally {
+        this.IsLoading = false;
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/variables.scss';
 .apartment-main-info {
   display: flex;
   flex-direction: column;
@@ -59,6 +86,13 @@ export default {
   }
   &__button {
     margin-top: 24px;
+    transition: background-color 0.4s, color 0.4s;
+    font-family: Monserat, sans-serif;
+    /* &:hover {
+      background: none;
+      color: $main-color;
+      border: 2px solid $main-color;
+    } */
   }
 }
 </style>

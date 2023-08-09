@@ -89,7 +89,7 @@ export default {
   },
 
   beforeCreate() {
-    console.log('beforeCreate this.apartment ', this.apartment);
+    // console.log('beforeCreate this.apartment ', this.apartment);
   },
   async created() {
     await this.getSelectedApartment(this.$route.params.id);
@@ -103,10 +103,10 @@ export default {
     // console.log('Created this.apartment ', this.apartment);
   },
   beforeMount() {
-    console.log('beforeMount el', this.$el);
+    // console.log('beforeMount el', this.$el);
   },
   mounted() {
-    console.log('Mount el', this.$el);
+    // console.log('Mount el', this.$el);
     // console.log('this.$router :', this.$router);
     // console.log('this.$route:', this.$route);
     // console.log('this.$route.params.id', this.$route.params.id);
@@ -114,10 +114,10 @@ export default {
     // console.log('this.apartment', this.apartment);
   },
   beforeDestroy() {
-    console.log('beforeDestroy el', this.$el);
+    // console.log('beforeDestroy el', this.$el);
   },
   destroyed() {
-    console.log('destroy el', this.$el);
+    // console.log('destroy el', this.$el);
   },
 };
 </script>

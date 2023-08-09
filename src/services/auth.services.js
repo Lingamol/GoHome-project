@@ -5,4 +5,7 @@ const loginUser = payload => {
 const registerUser = payload => {
   return axios.post('/users/register', payload);
 };
-export { loginUser, registerUser };
+const logout = () => {
+  return axios.post('/users/logout');
+};
+export { loginUser, registerUser, logout };
