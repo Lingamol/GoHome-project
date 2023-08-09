@@ -11,7 +11,7 @@ jobs:
       with:
         username: 'lingamol'
         reponame: 'go_home-project'
-        token: ${{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}}
+        token: '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'
       env:
         VUE_APP_KEY: ${{ secrets.VUE_APP_KEY }}
         VUE_APP_URL: ${{ secrets.VUE_APP_URL }}
