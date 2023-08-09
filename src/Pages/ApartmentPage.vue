@@ -45,7 +45,7 @@ import { STYLE } from '../variables';
 export default {
   name: 'ApartmentPage',
   // import { apartments } from '../components/Apartment/apartments';
-  // import { apartments } from '../components/Apartment/apartments';
+
   components: {
     ApartmentsMainInfo,
     ReviewsApartments,
