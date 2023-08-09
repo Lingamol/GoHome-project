@@ -2,36 +2,42 @@
   <!-- <div class="apartments-item" @click="log(id, $event)"> -->
   <!-- <div class="apartments-item" @click="$emit('click')"> -->
   <div class="apartments-item">
+    <!-- <router-link to="/apartment"> -->
+
     <div class="apartments-item__inner">
-      <img :src="imgSrc" alt="" class="apartments-item__photo" />
+      <img :src="imgSrc" alt="apartment photo" class="apartments-item__photo" />
       <div class="apartments-item__content">
-        <p class="apartments-item__description">{{ description }}</p>
-        <div class="apartments-item__raiting">
-          <StarRaiting :raiting="raiting" />
+        <p class="apartments-item__description">{{ descr }}</p>
+        <div class="apartments-item__rating">
+          <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
-        <a href="https:/facebook.com" @click.prevent.stop="handleLinkClicked">Facebook</a>
+        <router-link
+          :to="{ name: 'apartment', params: { id: id }, query: { name: 'John' } }"
+          class="apartments-item__link"
+        ></router-link>
       </div>
+      <!-- <a href="https:/facebook.com" @click.prevent.stop="handleLinkClicked">Facebook</a> -->
     </div>
   </div>
 </template>
 
 <script>
-import StarRaiting from '../StarRaiting/StarRaiting.vue';
+import StarRating from '../StarRating/StarRating.vue';
 
 export default {
   name: 'ApartmentsItem',
-  components: { StarRaiting },
+  components: { StarRating },
   props: {
     id: {
       tipe: String,
       require: true,
     },
-    description: {
+    descr: {
       type: String,
       default: '',
     },
-    raiting: { type: Number, default: 0 },
+    rating: { type: Number, default: 0 },
     price: { type: Number, drequired: true },
     imgSrc: {
       type: String,
@@ -80,7 +86,7 @@ export default {
     max-height: calc(1em * 1.4 * 3);
     overflow: hidden;
   }
-  &__raiting {
+  &__rating {
     margin-bottom: 20px;
   }
   &__price {
@@ -94,6 +100,13 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>

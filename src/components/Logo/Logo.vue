@@ -1,11 +1,11 @@
 <template>
   <div class="logo">
-    <a href="" class="logo__link">
-      <img src="../../assets/images/svg/Logo.svg" alt="logo" class="logo__img" />
+    <router-link class="logo__link" to="/">
+      <img :src="require('@/assets/images/svg/Logo.svg')" alt="logo" class="logo__img" />
       <div class="logo__text">
         <span class="logo__text_first">Go</span><span class="logo__text_second">Home</span>
-      </div>
-    </a>
+      </div></router-link
+    >
   </div>
 </template>
 
@@ -19,11 +19,15 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/variables.scss';
 .logo {
+  /* position: relative; */
   &__link {
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    /* position: absolute;
+    height: 100%;
+    width: 100%; */
   }
   &__img {
     height: 28px;

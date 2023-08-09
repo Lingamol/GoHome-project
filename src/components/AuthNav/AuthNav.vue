@@ -1,28 +1,28 @@
 <template>
   <div class="auth">
-    <AuthButton class="sign-in" @click="signIn">Вхід</AuthButton><span>/</span>
-    <AuthButton class="sign-up" @click="signUp">Реєстрація</AuthButton>
+    <AuthButton class="sign-in" :route="'/login'">Вхід</AuthButton><span>/</span>
+    <AuthButton class="sign-up" :route="'/register'">Реєстрація</AuthButton>
   </div>
 </template>
 
 <script>
-import AuthButton from "./AuthButton.vue";
+import AuthButton from './AuthButton.vue';
 export default {
-  name: "AuthNav",
+  name: 'AuthNav',
   components: { AuthButton },
   methods: {
     signIn() {
-      alert("signIN");
+      alert('signIN');
     },
     signUp() {
-      alert("signUP");
+      alert('signUP');
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../../assets/scss/variables.scss";
+@import '../../assets/scss/variables.scss';
 .auth {
   display: flex;
   color: $text-color;
