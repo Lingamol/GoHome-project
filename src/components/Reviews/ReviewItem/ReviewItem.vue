@@ -1,6 +1,6 @@
 <template>
   <li class="review-item">
-    <ReviewHeader :author="review.name" :rating="review.rating" :avatarUrl="review.avatarUrl" />
+    <ReviewHeader :author="review.author" :rating="review.rating" :avatarUrl="review.avatarUrl" />
     <p class="review-item__text">{{ textElipses }}</p>
   </li>
 </template>
@@ -28,10 +28,10 @@ export default {
   // },
   computed: {
     textElipses() {
-      if (this.review.text.length < this.maxLength) {
-        return this.review.text;
+      if (this.review.content.length < this.maxLength) {
+        return this.review.content;
       }
-      return this.review.text.slice(0, this.maxLength) + '...';
+      return this.review.content.slice(0, this.maxLength) + '...';
     },
   },
 };
@@ -44,13 +44,13 @@ export default {
   height: 200px;
   background: red; */
   padding: 20px;
-  height: 196px;
+  max-height: 196px;
   border-top: 2px solid $secondary-bg-color;
   border-left: 2px solid $secondary-bg-color;
   border-right: 2px solid $secondary-bg-color;
 
   &__text {
-    height: 100px;
+    max-height: 100px;
     overflow: hidden;
     /* text-overflow: ellipsis;
     white-space: nowrap; */

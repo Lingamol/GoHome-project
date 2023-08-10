@@ -5,8 +5,10 @@
       <OrderItem
         v-for="order in items"
         :key="order.id"
+        :orderId="order.id"
         :order="order.apartment"
         class="orders-list__item"
+        :showBtn="true"
       />
     </ul>
   </div>

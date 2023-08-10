@@ -8,4 +8,8 @@ const registerUser = payload => {
 const logout = () => {
   return axios.post('/users/logout');
 };
-export { loginUser, registerUser, logout };
+const currentUser = () => {
+  return axios.post('/users/current');
+};
+
+export { loginUser, registerUser, logout, currentUser };

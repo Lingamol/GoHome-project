@@ -6,7 +6,6 @@
       <AppHeader />
       <router-view></router-view>
     </div>
-    {{ $store.state.user }}
     <AppFooter />
   </div>
 </template>

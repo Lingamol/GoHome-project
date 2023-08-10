@@ -17,6 +17,7 @@
 import CustomInput from '../Shared/CustomInput';
 import CustomSelect from '../Shared/CustomSelect';
 import SubmitButton from '../ButtonMain/ButtonMain.vue';
+import { mapMutations } from 'vuex';
 export default {
   name: 'ApartmentFilterForm',
   components: { CustomInput, CustomSelect, SubmitButton },
@@ -29,12 +30,14 @@ export default {
   },
 
   methods: {
+    ...mapMutations('filters', ['setApartmentsFilter']),
     handleResetFilter() {
       Object.assign(this.$data, this.$options.data.call(this));
       this.resetFilter();
     },
     handleSubmit() {
-      this.$emit('submit', { city: this.city, price: this.price });
+      // this.$emit('submit', { city: this.city, price: this.price });
+      this.setApartmentsFilter({ price: this.price, location: { city: this.city } });
     },
   },
 };

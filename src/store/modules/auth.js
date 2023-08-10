@@ -1,4 +1,4 @@
-import { loginUser, registerUser, logout } from '@/services/auth.services';
+import { loginUser, registerUser, logout, currentUser } from '@/services/auth.services';
 
 const initialState = { user: '', token: '' };
 
@@ -43,6 +43,13 @@ export default {
     async logout({ commit }) {
       await logout();
       commit('clearUserData');
+    },
+    async refreshUser(context) {
+      const { commit } = context;
+      const { data } = await currentUser();
+      const { user, token } = data;
+      commit('setUserData', user);
+      commit('setToken', token);
     },
   },
 };

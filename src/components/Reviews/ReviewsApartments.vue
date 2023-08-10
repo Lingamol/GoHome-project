@@ -33,11 +33,12 @@ export default {
   },
   computed: {
     averageRating() {
-      return (
-        this.reviews.reduce((total, review) => {
-          return total + review.rating;
-        }, 0) / this.reviews.length
-      );
+      // return (
+      //   this.reviews.reduce((total, review) => {
+      //     return total + review.rating;
+      //   }, 0) / this.reviews.length
+      // );
+      return 1;
     },
     amountReviews() {
       return this.reviews.length;

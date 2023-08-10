@@ -10,7 +10,7 @@
     </p>
     <ResereButton
       @click="handleApsrtmentsBooking()"
-      :loading="IsLoading"
+      :loading="getStateIsLoadingAddOrder"
       class="apartment-main-info__button"
       >Забронировать</ResereButton
     >
@@ -20,36 +20,54 @@
 <script>
 import StarRating from '../StarRating/StarRating.vue';
 import ResereButton from '../ButtonMain/ButtonMain.vue';
-import { bookApartment } from '../../services/orders.services';
+// import { bookApartment } from '../../services/orders.services';
+import { mapActions, mapGetters } from 'vuex';
 export default {
   name: 'ApartmentsMainInfo',
   components: { StarRating, ResereButton },
   props: { apartment: { type: Object, requred: true } },
   data() {
-    return { IsLoading: false };
+    return {
+      // IsLoading: false
+    };
   },
+  computed: { ...mapGetters('orders', ['getStateErrorAddOrder', 'getStateIsLoadingAddOrder']) },
   methods: {
+    ...mapActions('orders', ['addOrder']),
     async handleApsrtmentsBooking() {
       const body = { apartmentId: this.$route.params.id, date: Date.now() };
-      try {
-        this.IsLoading = true;
-
-        const { data } = await bookApartment(body);
-        console.log('bookData', data);
-        this.$notify({
-          type: 'success',
-          title: 'Заказ добавлен',
-        });
-      } catch (error) {
+      await this.addOrder({ body, apartment: this.apartment });
+      if (this.getStateErrorAddOrder) {
         this.$notify({
           type: 'error',
           title: 'Произошла ошибка',
-          text: error.message,
+          text: this.getStateErrorAddOrder,
         });
-        console.error(error.message);
-      } finally {
-        this.IsLoading = false;
+        return;
       }
+      this.$notify({
+        type: 'success',
+        title: 'Заказ добавлен',
+      });
+      // try {
+      //   this.IsLoading = true;
+
+      //   const { data } = await bookApartment(body);
+      //   console.log('bookData', data);
+      //   this.$notify({
+      //     type: 'success',
+      //     title: 'Заказ добавлен',
+      //   });
+      // } catch (error) {
+      //   this.$notify({
+      //     type: 'error',
+      //     title: 'Произошла ошибка',
+      //     text: error.message,
+      //   });
+      //   console.error(error.message);
+      // } finally {
+      //   this.IsLoading = false;
+      // }
     },
   },
 };
