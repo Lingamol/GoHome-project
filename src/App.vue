@@ -6,7 +6,6 @@
       <AppHeader />
       <router-view></router-view>
     </div>
-    {{ $store.state.user }}
     <AppFooter />
   </div>
 </template>
@@ -21,7 +20,7 @@ export default {
   components: { AppFooter, AppHeader, NotificationsApp },
   computed: { ...mapGetters('auth', ['isLoggedIn']) },
   mounted() {
-    console.log('isLoggedIn:', this.isLoggedIn);
+    // console.log('isLoggedIn:', this.isLoggedIn);
     // console.log('isLoggedIn:', this.$store.getters['auth/isLoggedIn']);
     // console.log('store', this.$store.state.userName);
     // setTimeout(() => {

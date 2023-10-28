@@ -1,4 +1,4 @@
-import { loginUser, registerUser } from '@/services/auth.services';
+import { loginUser, registerUser, logout, currentUser } from '@/services/auth.services';
 
 const initialState = { user: '', token: '' };
 
@@ -21,6 +21,9 @@ export default {
     setToken(state, token) {
       state.token = token;
     },
+    clearUserData(state) {
+      Object.assign(state, { ...initialState });
+    },
   },
   actions: {
     async login(context, payload) {
@@ -33,6 +36,17 @@ export default {
     async registerUser(context, payload) {
       const { commit } = context;
       const { data } = await registerUser(payload);
+      const { user, token } = data;
+      commit('setUserData', user);
+      commit('setToken', token);
+    },
+    async logout({ commit }) {
+      await logout();
+      commit('clearUserData');
+    },
+    async refreshUser(context) {
+      const { commit } = context;
+      const { data } = await currentUser();
       const { user, token } = data;
       commit('setUserData', user);
       commit('setToken', token);

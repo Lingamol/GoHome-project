@@ -19,7 +19,7 @@
           <ApartmentsMainInfo :apartment="apartment" class="apartment-page__main-info" />
           <div class="apartment-page__additional-info">
             <ApartmentsOwner :owner="apartment.owner" class="apartment-page__owner" />
-            <ReviewsApartments :reviews="reviews" class="apartment-page__reviews" />
+            <ReviewsApartments :reviews="getStateReviews" class="apartment-page__reviews" />
           </div>
         </main>
       </div>
@@ -66,6 +66,7 @@ export default {
   },
   methods: {
     ...mapActions('apartments', ['getSelectedApartment']),
+    ...mapActions('reviews', ['getReviewsList']),
   },
   computed: {
     ...mapGetters('apartments', [
@@ -73,6 +74,7 @@ export default {
       'getStateIsLoadingSelectedApartment',
       ' getStateErrorSelectedApatrtment',
     ]),
+    ...mapGetters('reviews', ['getStateReviews', 'getStateLoadingReviews', 'getStateErrorReviews']),
 
     apartment() {
       // return this.$store.state.getters['apartments/getApartments'];
@@ -89,10 +91,11 @@ export default {
   },
 
   beforeCreate() {
-    console.log('beforeCreate this.apartment ', this.apartment);
+    // console.log('beforeCreate this.apartment ', this.apartment);
   },
   async created() {
     await this.getSelectedApartment(this.$route.params.id);
+    await this.getReviewsList(this.$route.params.id);
     // try {
     //   const { data } = await getApartmentsById(this.$route.params.id);
     //   console.log(data);
@@ -103,10 +106,10 @@ export default {
     // console.log('Created this.apartment ', this.apartment);
   },
   beforeMount() {
-    console.log('beforeMount el', this.$el);
+    // console.log('beforeMount el', this.$el);
   },
   mounted() {
-    console.log('Mount el', this.$el);
+    // console.log('Mount el', this.$el);
     // console.log('this.$router :', this.$router);
     // console.log('this.$route:', this.$route);
     // console.log('this.$route.params.id', this.$route.params.id);
@@ -114,10 +117,10 @@ export default {
     // console.log('this.apartment', this.apartment);
   },
   beforeDestroy() {
-    console.log('beforeDestroy el', this.$el);
+    // console.log('beforeDestroy el', this.$el);
   },
   destroyed() {
-    console.log('destroy el', this.$el);
+    // console.log('destroy el', this.$el);
   },
 };
 </script>
